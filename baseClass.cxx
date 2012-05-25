@@ -33,15 +33,12 @@
 
 
 //---------------------------------------------------------------------------
+%import "baseBaseClass.cxx"
+
 %include <baseClass.H>
 
-%extend baseClass
-{
-  void ext_baseClass_print()
-  {
-    std::cout << "extended Print BaseClass\n";
-  }
-}
+%template ( baseClass_int ) baseClass< int >;
+
 
 //---------------------------------------------------------------------------
 #endif

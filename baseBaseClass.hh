@@ -21,14 +21,12 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef baseClass_hh
-#define baseClass_hh
+#ifndef baseBaseClass_hh
+#define baseBaseClass_hh
 
 
 //---------------------------------------------------------------------------
-#include "baseBaseClass.hh"
-
-#include "baseClass.H"
+#include "baseBaseClass.H"
 
 
 //---------------------------------------------------------------------------

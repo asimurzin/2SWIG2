@@ -3,9 +3,13 @@
 
 #include <iostream>
 
+#include "baseBaseClass.H"
+template< class Type >
 struct baseClass
+  : public baseBaseClass< Type >
 {
   baseClass()
+    : baseBaseClass< Type >()
   {
     std::cout << "create TbaseClass\n";
   }

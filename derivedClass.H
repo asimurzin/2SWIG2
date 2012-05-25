@@ -4,11 +4,12 @@
 #include <iostream>
 #include "baseClass.H"
 
+template< class Type > 
 struct derivedClass
-  : public baseClass
+  : public baseClass< Type >
 {
   derivedClass()
-    : baseClass()
+    : baseClass< Type >()
   {
     std::cout << "create derivedClass\n";
   }

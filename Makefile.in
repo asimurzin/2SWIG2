@@ -25,6 +25,7 @@
 pythonflu_root_dir:=@abs_top_builddir@
 
 sources = \
+	@abs_top_builddir@/baseBaseClass.cxx \
 	@abs_top_builddir@/baseClass.cxx \
 	@abs_top_builddir@/derivedClass.cxx \
 

@@ -39,7 +39,9 @@
 
 %import "shared_ptr.hxx"
 
-%template ( sharedPtr_derivedClass ) boost::shared_ptr< derivedClass >;
+%template ( derivedClass_int ) derivedClass< int >;
+
+%template ( sharedPtr_derivedClass_int ) boost::shared_ptr< derivedClass< int > >;
 
 //---------------------------------------------------------------------------
 #endif

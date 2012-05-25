@@ -21,15 +21,29 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef baseClass_hh
-#define baseClass_hh
+#ifndef baseBaseClass_cxx
+#define baseBaseClass_cxx
 
 
 //---------------------------------------------------------------------------
-#include "baseBaseClass.hh"
+%module "baseBaseClass";
+%{
+  #include "baseBaseClass.hh"
+%}
 
-#include "baseClass.H"
 
+//---------------------------------------------------------------------------
+%include <baseBaseClass.H>
+
+%template ( baseBaseClass_int ) baseBaseClass< int >;
+
+%extend baseBaseClass< int >
+{
+  void ext_baseBaseClass_print()
+  {
+    std::cout << "extended Print BaseClass\n";
+  }
+}
 
 //---------------------------------------------------------------------------
 #endif
