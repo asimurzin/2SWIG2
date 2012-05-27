@@ -32,8 +32,6 @@ namespace boost
     {
         shared_ptr( shared_ptr const & r );
 
-        T * operator-> () const;
-
         T * get() const;
         
         T & operator* () const;
@@ -52,6 +50,11 @@ namespace boost
             bool __nonzero__() const
             {
                 return self->get() != 0;
+            }
+            
+            T * __call__() const
+            {
+                return self->get();
             }
             
             bool valid() const

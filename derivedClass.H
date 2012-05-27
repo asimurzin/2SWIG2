@@ -17,6 +17,11 @@ struct derivedClass
   {
     std::cout << "derivedClass\n";
   }
+
+  static boost::shared_ptr< derivedClass > create()
+  {
+    return boost::shared_ptr< derivedClass >( new derivedClass() );
+  }
 };
 
 

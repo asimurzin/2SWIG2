@@ -43,5 +43,9 @@
   }
 }
 
+%import "shared_ptr.hxx"
+
+%template ( sharedPtr_baseClass ) boost::shared_ptr< baseClass >;
+
 //---------------------------------------------------------------------------
 #endif
