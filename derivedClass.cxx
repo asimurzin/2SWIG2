@@ -41,5 +41,13 @@
 
 %template ( sharedPtr_derivedClass ) boost::shared_ptr< derivedClass >;
 
+%extend boost::shared_ptr< derivedClass >
+{
+  void ext_baseClass_print()
+  {
+    std::cout << "extended Print BaseClass\n";
+  }
+}
+
 //---------------------------------------------------------------------------
 #endif
