@@ -37,9 +37,19 @@
 
 %include "derivedClass.H"
 
+
+//------------------------------------------------------------------------------
 %import "shared_ptr.hxx"
 
 %template ( sharedPtr_derivedClass ) boost::shared_ptr< derivedClass >;
+
+%feature( "pythonappend" )  boost::shared_ptr< derivedClass >::SMARTPTR_PYAPPEND_GETATTR( sharedPtr_derivedClass );
+
+%extend boost::shared_ptr< derivedClass >
+{
+  SMARTPTR_EXTEND_ATTR( sharedPtr_derivedClass );
+}
+
 
 //---------------------------------------------------------------------------
 #endif

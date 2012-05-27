@@ -21,40 +21,42 @@
 
 
 //---------------------------------------------------------------------------
-#ifndef baseClass_cxx
-#define baseClass_cxx
+#ifndef smartPtr_extend_hxx
+#define smartPtr_extend_hxx
 
 
 //---------------------------------------------------------------------------
-%module "baseClass";
+//For using tmp<T> & autoPtr<T> as T
+%define SMARTPTR_PYAPPEND_GETATTR( Type ) __getattr__
 %{
-  #include "baseClass.hh"
+    name = args[ 0 ]
+    try:
+        return _swig_getattr( self, Type, name )
+    except AttributeError:
+        if self.valid() :
+            attr = None
+            exec "attr = self.__call__().%s" % name
+            return attr
+        pass
+    raise AttributeError()
 %}
+%enddef
 
 
 //---------------------------------------------------------------------------
-%include <baseClass.H>
+%define SMARTPTR_EXTEND_ATTR( Type )
+    void __getattr__( const char* name ){} // dummy function
+%enddef
 
-%extend baseClass
-{
-  void ext_baseClass_print()
+
+//---------------------------------------------------------------------------
+%define SMARTPTR_EXTEND_OPERATOR_EQ( UList_Type )
+  bool operator==( const Foam::UList< UList_Type >& theArg )
   {
-    std::cout << "extended Print BaseClass\n";
+    const Foam::UList< UList_Type > * aSelf = static_cast< const Foam::UList< UList_Type > * >( self->ptr() );
+    return *aSelf == theArg;
   }
-}
-
-
-//------------------------------------------------------------------------------
-%import "shared_ptr.hxx"
-
-%template ( sharedPtr_baseClass ) boost::shared_ptr< baseClass >;
-
-%feature( "pythonappend" )  boost::shared_ptr< baseClass >::SMARTPTR_PYAPPEND_GETATTR( sharedPtr_baseClass );
-
-%extend boost::shared_ptr< baseClass >
-{
-  SMARTPTR_EXTEND_ATTR( sharedPtr_baseClass );
-}
+%enddef
 
 
 //---------------------------------------------------------------------------

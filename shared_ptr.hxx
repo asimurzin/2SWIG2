@@ -26,19 +26,15 @@
 
 
 //---------------------------------------------------------------------------
+%include "smartPtr_extend.hxx"
+
+
+//---------------------------------------------------------------------------
 namespace boost
 {
     template <class T> struct shared_ptr 
     {
         shared_ptr( shared_ptr const & r );
-
-        T * get() const;
-        
-        T & operator* () const;
-
-        bool unique() const;
-
-        long use_count() const;
 
         %extend
         {
@@ -50,11 +46,6 @@ namespace boost
             bool __nonzero__() const
             {
                 return self->get() != 0;
-            }
-            
-            T * __call__() const
-            {
-                return self->get();
             }
             
             bool valid() const
